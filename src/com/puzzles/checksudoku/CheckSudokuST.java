@@ -35,8 +35,14 @@ public class CheckSudokuST
 		for(int cur_index=0; cur_index<=8; cur_index++)
 		{
 			// get row as an array
-			
+			int[] tempArray = null;
+			tempArray = sudoku[cur_index];
 			// check uniqueness of array
+			if(!isUnique(tempArray))
+			{
+				System.out.println("row "+cur_index+" not unique");
+				return;
+			}
 		}
 		
 		
@@ -45,30 +51,53 @@ public class CheckSudokuST
 		for(int cur_index=0; cur_index<=8; cur_index++)
 		{
 			// get column as an array
-			
+			int[] tempArray = null;
+			tempArray = getColumnAsArray(sudoku, cur_index);
 			// check uniqueness of array
+			if(!isUnique(tempArray))
+			{
+				System.out.println("col : "+cur_index+" not unique");
+				return;
+			}
+			
 		}
 		
 		
 		/*loop through all sub-area and check for uniqueness. Exit
 		 * with message if not unique.*/
-		for(int cur_index=0; cur_index<=8; cur_index++)
+		for(int cur_row_index=0; cur_row_index<=6; cur_row_index=cur_row_index+3)
 		{
-			// get sub-area as an array
-			
-			// check uniqueness of array
+			for(int cur_col_index=0; cur_col_index<=6; cur_col_index=cur_col_index+3)
+			{
+				// get sub-area as an array
+				int[] tempArray = null;
+				tempArray = getSub3x3Array(sudoku, cur_row_index, cur_col_index);
+				// check uniqueness of array
+				if(!isUnique(tempArray))
+				{
+					System.out.println("sub Array : "+cur_row_index+","+cur_col_index+" : not unique");
+					return;
+				}
+			}
 		}
 		
 		// if we reach here that mean sudoku is correct. exit with message.
-		
+		System.out.println("Correct sudoku");
 	}
 	
+	
+	/**
+	 * returns true if single dimensional array contains unique</br>
+	 * members. Else false.
+	 * @param array
+	 * @return boolean
+	 */
 	public static boolean isUnique(int[] array)
 	{
 		List linked_array = new LinkedList(Arrays.asList(array));
 		for(int cur_index = 0; cur_index<linked_array.size(); cur_index++)
 		{
-			if(linked_array.lastIndexOf(linked_array[cur_index])!= cur_index)
+			if(linked_array.lastIndexOf(linked_array.toArray()[cur_index])!= cur_index)
 			{
 				return false;
 			}
@@ -85,7 +114,7 @@ public class CheckSudokuST
 	 */
 	public static int[] getColumnAsArray(int[][] aArray, int aCol)
 	{
-		int[] retArray = null;
+		int[] retArray = new int[10];
 		for(int i=0; i<=8; i++)
 		{
 			retArray[i]=aArray[i][aCol];
@@ -97,14 +126,26 @@ public class CheckSudokuST
 	
 	/**
 	 * returns a single dimentional array if provided with a 2D array <br/>
-	 * Tranversing is done through row by row.
+	 * Tranversing is done row by row.
 	 * @param aArray 2D array
+	 * @param aRow row number of the element that represents upper left corner of 3x3 sub array
+	 * @param aCol col number of the element that represents upper left corner of 3x3 sub array
 	 * @return single dimensional array
 	 */
 	
-	public static int[] get2DasArray(int[][] aArray)
+	public static int[] getSub3x3Array(int[][] aArray, int aRow, int aCol)
 	{
+		int[] retSubArray = new int[10];
+		int index = 0;
+		for(int i=aRow;i<(aRow+3);i++)
+		{
+			for(int j=aCol; j<(aCol+3); j++)
+			{
+				retSubArray[index]=aArray[i][j];
+				index++;
+			}
+		}
 		
+		return retSubArray;
 	}
-
 }
