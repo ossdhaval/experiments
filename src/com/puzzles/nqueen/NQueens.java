@@ -5,25 +5,52 @@ public class NQueens {
 	static int[][] mBoard = new int[8][8];
 	static int[][] mSetQueens = new int[8][2];
 	
-	public NQueens()
+
+	//public NQueens()
+	static
 	{
-		
+		for(int i=0;i<=7;i++)
+		{
+			mSetQueens[i][0]=-1;
+			mSetQueens[i][1]=-1;
+		}
 	}
 	
 	public static void main(String[] args)
 	{
+		for(int i=0;i<=7;i++)
+		{
+			mSetQueens[i][0]=-1;
+			mSetQueens[i][1]=-1;
+		}
 		
 		for(int i=0; i<8; i++)
 		{
 			if(!checkRow(i))
-				continue;
-			for(int j=0; j<8; j++)
 			{
-				if(!checkColumn(j))
-					continue;
-				if(!checkUpperDiagonals(i,j))
-					continue;
-				putQueen(i,j);
+				continue;
+			}
+			else
+			{
+				for(int j=0; j<8; j++)
+				{
+					if(!checkColumn(j))
+					{
+						continue;
+					}
+					else
+					{
+						if(!checkUpperDiagonals(i,j))
+						{
+							continue;
+						}
+						else
+						{
+							putQueen(i,j);
+							break;
+						}
+					}
+				}
 			}
 		}
 		
@@ -91,17 +118,24 @@ public class NQueens {
 	public static void putQueen(int aRow, int aCol)
 	{
 		// find empty slot in mSetQueens
-		int i=0;
-		while(mSetQueens[i][0] != 0)
-			i++;
-		mSetQueens[i][0] = aRow;
-		mSetQueens[i][1] = aCol;
+		int m=0;
+		while(mSetQueens[m][0] != -1)
+			m++;
+		mSetQueens[m][0] = aRow;
+		mSetQueens[m][1] = aCol;
 	}
 	
 	public static void showBoard()
 	{
+		
+		// remove the -1 initialization value from mSetQueens
+		
+				
 		for (int i=0; i<8; i++)
 		{
+			if(mSetQueens[i][0] == -1)
+				continue;
+			
 			mBoard[mSetQueens[i][0]][mSetQueens[i][1]] = 1;
 		}
 		
