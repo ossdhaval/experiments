@@ -1,4 +1,4 @@
-package com.compare;
+package com.compare.comparable;
 
 public class MyObject implements Comparable
 {
