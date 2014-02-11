@@ -2,7 +2,7 @@ package com.compare.comparator;
 
 import java.util.Comparator;
 
-public class Employee 
+public class Employee implements Comparable
 {
 	private int id;
 	private String firstName;
@@ -24,6 +24,31 @@ public class Employee
 		this.level = level;
 	}
 	
+	/**
+	 * this method is required to implement by Comparable interface. (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 * @return Should return +ve if this obj is greater then one being passed, 0 if equal, -ve if less.
+	 */
+	
+	public int compareTo(Object obj)
+	{
+		Employee emp2 = (Employee)obj;
+		
+		if(this.id < emp2.id)
+			// return negative value
+			return -1;
+		if(this.id == emp2.id)
+			// return 0
+			return 0;
+		if(this.id > emp2.id)
+			// return positive value
+			return 1;
+		
+		// if none of above match ( not likely ) then return negative
+		return -1;
+	}
+	
+	
 	public static Comparator SortByIDAscending = new Comparator() 
 												{
 
@@ -43,13 +68,6 @@ public class Employee
 													}
 												
 												};
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	public int getId() {
