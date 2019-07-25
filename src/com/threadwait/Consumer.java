@@ -1,7 +1,7 @@
 package com.threadwait;
 
 import java.util.ArrayList;
-// This is consumer
+// This is consumer. This is just a comment.
 public class Consumer implements Runnable
 {
 	private ArrayList<String> mList = new ArrayList<String>();

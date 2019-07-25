@@ -1,7 +1,7 @@
 package com.threadwait;
 
 import java.util.ArrayList;
-
+// this is a producer
 public class Producer implements Runnable
 {
 	ArrayList<String> mList = new ArrayList<String>();
