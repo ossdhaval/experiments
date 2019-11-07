@@ -10,8 +10,12 @@ public class ArrayToSet
 {
 	public static void main(String[] args)
 	{
-		int[] ia = {1,2,3,4,5,6,7,8,9,0};
+		Integer[] ia = {1,2,3,4,9,6,7,8,9,9};
 		Set<Integer> s = new HashSet(Arrays.asList(ia));
-		System.out.println(s.size());
+		for(Integer i:s)
+		{
+			System.out.println(i);
+		}
+		System.out.println("---"+s.size());
 	}
 }
