@@ -31,7 +31,7 @@ public class MyHashMap<K,V>
 		
 		if(currEntry==null)
 		{
-			currEntry=new MyMapEntry(key, value);
+			currEntry=new MyMapEntry<K, V>(key, value);
 		}
 		else
 		{
@@ -45,7 +45,7 @@ public class MyHashMap<K,V>
 			}
 			else
 			{
-				currEntry.setNext(new MyMapEntry<MyHashMap.K, MyHashMap.V>(key, value));
+				currEntry.setNext(new MyMapEntry<K,V>(key, value));
 			}
 			
 		}
