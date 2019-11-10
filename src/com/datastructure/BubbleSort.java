@@ -2,23 +2,37 @@ package com.datastructure;
 
 public class BubbleSort 
 {
+	//static Integer[] myArray = {10,9,8,7,6,5,4,3,-7,9};
+	static Integer[] myArray = {1,2,3,4,5,6,7,8,9};
+	static int counter = -1;
+	
+	static int totalComparisions = 0;
+	
 	public static void main(String[] args)
 	{
-		Integer[] ia = {3,4,5,1,6,4,34,22,45};
-		
-		for(int k=0; k<ia.length-1; k++)
+		while(counter!=0)
 		{
-			for(int i=0; i<ia.length-(k+1); i++)
+			counter=0;
+			for(int i=0; i<myArray.length-1; i++)
 			{
-				if(ia[i]>ia[i+1])
+				totalComparisions++;
+				if(myArray[i] > myArray[i+1])
 				{
-					Integer temp = ia[i];
-					ia[i] = ia[i+1];
-					ia[i+1]=temp;
+					counter++;
+					int tmp = myArray[i];
+					myArray[i] = myArray[i+1];
+					myArray[i+1] = tmp;
 				}
 			}
+			
 		}
-		for(Integer j : ia)
-			System.out.println(j.intValue());
+		
+		System.out.println("Comparision Count : "+totalComparisions);
+		
+		for(int i : myArray)
+			System.out.println(i);
 	}
+		
+
 }
+
